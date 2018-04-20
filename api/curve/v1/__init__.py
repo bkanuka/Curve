@@ -54,7 +54,7 @@ def auth_filter():
         g.user = User.query.filter_by(uid=uid).first()
     if g.user is None:
         login_path = path_prefix + '/login/redirect'
-        if request.path.encode('utf-8').startswith(path_prefix + '/login'):
+        if request.path.startswith(path_prefix + '/login'):
             return None
         for _ in current_app.config['OAUTH']:
             return redirect(login_path)
